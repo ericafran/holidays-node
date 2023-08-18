@@ -1,11 +1,22 @@
-var clienteModel = require('../models/clienteModel')();
 
+var feriadoController = require ('../controllers/feriadoController');
 
     module.exports = function(app){
         app.get('/',function(req,res){
-              //console.log(clienteModel.all())
-              var listaFeriados=clienteModel.all();
-            res.render('aplicativo/home',{clientes:listaFeriados});
+        res.render('aplicativo/home');
+          });
+
+         // app.get('/',function(req,res){
+           // feriadoController.index(req,res);
+         // });
+          
+        app.post('/',function(req,res){
+        feriadoController.adicionar(req,res);
+          
+        });
+        
+              
+           
             
-            });
-    }
+        };
+

@@ -29,5 +29,6 @@ module.exports.criarTabelas= () =>{
             console.log('TABELA OK')
         })
 
+
         }
     

@@ -11,11 +11,8 @@ module.exports.index = function(req,res){
 };
 
 module.exports.adicionar = function(req,res){
-   
-    var nome = req.body.nome_feriado;
-    var data = req.body.data_feriado;
-    var chave = req.body.chave_municipio;
-    clienteModel.save(nome,data,chave,function(erro,resultado){
+    var dados = req.body;
+    clienteModel.save(dados,function(erro,resultado){
         
         if(!erro){
             res.redirect('/');

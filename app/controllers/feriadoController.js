@@ -12,6 +12,7 @@ module.exports.index = function(req,res){
 
 module.exports.adicionar = function(req,res){
     var dados = req.body;
+ 
     clienteModel.save(dados,function(erro,resultado){
         
         if(!erro){

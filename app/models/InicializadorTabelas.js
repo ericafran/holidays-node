@@ -18,7 +18,7 @@ module.exports.criarTabelas= () =>{
         CREATE TABLE IF NOT EXISTS feriados(
          id_feriados INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
          nome_feriado  varchar(25),
-         data_feriado TEXT NOT NULL ,
+         data_feriado TEXT ,
          chave_municipio integer,
          CONSTRAINT fk_FeriMuni FOREIGN KEY (chave_municipio)REFERENCES municipios (id_municipio)
          );`

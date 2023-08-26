@@ -15,7 +15,9 @@ var feriadoController = require ('../controllers/feriadoController');
           
         });
         
-              
+        app.get('/',function(req,res){
+          feriadoController.show(req,res);
+        }) ;  
            
             
         };

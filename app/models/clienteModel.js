@@ -1,6 +1,6 @@
 var db = require('../../config/SqliteConfig.js');
 const express = require('express');
-
+const { body, validationResult } = require("express-validator");
 module.exports = function () {
 
     this.find = function (municipio, retorno) {
@@ -16,24 +16,34 @@ module.exports = function () {
 
     };
     this.save = async function (dados, retorno) {
-        var nome = dados.nome_feriado;
-        var data = dados.data_feriado;
-        var chave = dados.chave_municipio;
 
-        var queryCadastra = `insert into feriados (nome_feriado,data_feriado,chave_municipio) 
-        VALUES ('${nome}','${data}',${chave})`;
-
-        const registro = await findName(nome);
-        
-       console.log(registro.length)
-        if (registro.length == 0 ) {
-            db.openDb().then(db => {
-                db.exec(queryCadastra, retorno)
-
-            });
+        if (body("nome_feriado").isEmpty()) {
+            console.log("Nome do feriado está vazio!!")
+            
         } else {
-            ("Erro ao procurar nome do feriado")
+            var nome = dados.nome_feriado;
+            var data = dados.data_feriado;
+            var chave = dados.chave_municipio;
+
+
+            var queryCadastra = `insert into feriados (nome_feriado,data_feriado,chave_municipio) 
+            VALUES ('${nome}','${data}',${chave})`;
+
+            const registro = await findName(nome);
+
+            console.log(registro.length)
+            if (registro.length == 0) {
+                db.openDb().then(db => {
+                    db.exec(queryCadastra, retorno)
+
+                });
+            } else {
+                ("Erro ao cadastrar nome do feriado")
+            }
+
         }
+
+
 
 
 

@@ -3,7 +3,7 @@ var feriadoController = require ('../controllers/feriadoController');
 
     module.exports = function(app){
         app.get('/',function(req,res){
-        res.render('aplicativo/home');
+        res.render('aplicativo/index');
           });
 
          // app.get('/',function(req,res){
@@ -17,6 +17,7 @@ var feriadoController = require ('../controllers/feriadoController');
         
         app.get('/',function(req,res){
           feriadoController.show(req,res);
+          res.send('mostra lista');
         }) ;  
            
             

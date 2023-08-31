@@ -3,68 +3,100 @@ const express = require('express');
 const { body, validationResult } = require("express-validator");
 module.exports = function () {
 
-    this.find = function (municipio, retorno) {
+    this.find = async function (municipio, retorno) {
         var municipio = dados.municipio;
-        console.log(municipio)
-        return;
-        var query1 = `select * from feriados where nome_municipio ='${municipio}'`;
-        console.log(query1);
-
-        db.openDb().then(db => {
-            db.run(query1, retorno);
-        });
-
-    };
-    this.save = async function (dados, retorno) {
-
-        if (body("nome_feriado").isEmpty()) {
-            console.log("Nome do feriado está vazio!!")
-            
-        } else {
-            var nome = dados.nome_feriado;
-            var data = dados.data_feriado;
-            var chave = dados.chave_municipio;
-
-
-            var queryCadastra = `insert into feriados (nome_feriado,data_feriado,chave_municipio) 
-            VALUES ('${nome}','${data}',${chave})`;
-
-            const registro = await findName(nome);
-
-            console.log(registro.length)
-            if (registro.length == 0) {
-                db.openDb().then(db => {
-                    db.exec(queryCadastra, retorno)
-
-                });
-            } else {
-                ("Erro ao cadastrar nome do feriado")
+        
+        const registro = await findId(municipio);
+        var querySeleciona = `select * from feriados where id_municipio = '${registro}`;
+        
+        if (registro.length > 0) {
+            db.openDb().then(db => {
+                db.exec(querySeleciona, retorno)
+            });
+               
+            }else{
+                ("Erro ao realizar consulta")
             }
 
-        }
-
-
-
-
-
-
     };
 
-    this.findName = async function (nome, res) {
 
-        var queryFindName = `select * from feriados where nome_feriado = '${nome}'`;
-        console.log(queryFindName)
-        try {
-            return db.openDb().then(db => {
-                return db.all(queryFindName)
-                    .then(res => res)
-            });
+this.findId = async function (municipio, res) {
+
+    var queryFind = `select id_municipio from municipios where nome_municipio = '${municipio}`;
+
+    console.log(queryFind)
+    try {
+        return db.openDb().then(db => {
+            return db.all(queryFind)
+                .then(res => res)
+        });
+        
+    } catch (e) {
+        ('Falha ao procurar Id')
+    }
+    return res;
 
 
-        } catch (e) {
-            ('Falha ao procurar nome_feriado');
-        }
-    };
+};
 
-    return this;
+
+this.save = async function (dados, retorno) {
+    var nome = dados.nome_feriado;
+    if (body(nome).isAlpha() == true) {
+
+        console.log(nome);
+        // var data = dados.data_feriado;
+        //var chave = dados.chave_municipio;
+
+
+        //var queryCadastra = `insert into feriados (nome_feriado,data_feriado,chave_municipio) 
+        // VALUES ('${nome}','${data}',${chave})`;
+
+        //const registro = await findName(nome);
+
+        //console.log(registro.length)
+        //  if (registro.length == 0) {
+        // db.openDb().then(db => {
+        //  db.exec(queryCadastra, retorno)
+
+        //});
+        //} else {
+        //("Erro ao cadastrar nome do feriado")
+
+        //}
+
+
+    } else {
+        console.log("Este campo deve ser preenchido somente com letras")
+
+
+
+    }
+
+
+
+
+
+
+
+};
+
+this.findName = async function (nome, res) {
+
+    var queryFindName = `select * from feriados where nome_feriado = '${nome}'`;
+    console.log(queryFindName)
+    try {
+        return db.openDb().then(db => {
+            return db.all(queryFindName)
+                .then(res => res)
+        });
+
+
+    } catch (e) {
+        ('Falha ao procurar nome_feriado');
+    }
+};
+
+return this;
 };

@@ -21,6 +21,7 @@ module.exports.adicionar = function(req,res){
 };
 
 module.exports.show = function(req,res){
+   
     var municipio = req.body;
 
     clienteModel.find(municipio,function(erro,resultado){

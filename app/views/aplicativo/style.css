@@ -1,16 +1,4 @@
-
-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: green;
-    
-}
-
-
-.consulta{
-    background-color: coral;
-    width: 100em;
-    height: 100em;
+.cabecalho{
+    color: brown;
+    background-color: lightgreen;
 }

@@ -57,8 +57,6 @@ module.exports = function () {
         const verificaSeCaractereEspecial = this.validaCaracteresEspecial(validaEspecial);
 
 
-
-
         if (verificaSeNumero && verificaSeCaractereEspecial == true) {
             var data = dados.data_feriado;
             var chave = dados.chave_municipio;

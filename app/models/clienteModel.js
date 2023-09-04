@@ -48,7 +48,7 @@ module.exports = function () {
     this.save = async function (dados, retorno) {
         var nome = dados.nome_feriado;
         const regexNumber = /\d+/g;
-        const regexEspecial = /\W|/;
+        const regexEspecial = /[^a-zA-Z 0-9]+/g;
 
         var validaNumero = nome.match(regexNumber);
         var validaEspecial = nome.match(regexEspecial);

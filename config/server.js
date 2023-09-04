@@ -1,26 +1,26 @@
 
+//const { ExpressValidator } = require('express-validator');
 const { criarTabelas } = require('../app/models/InicializadorTabelas');
 
+module.exports = function () {
 
-module.exports = function() {
-    
     criarTabelas()
-    var express = require ('express');
-    var bodyParser = require ('body-parser');
-    
+    var express = require('express');
+    var bodyParser = require('body-parser');
+
 
     var app = express();
-    app.set('view engine','ejs');
-    app.set('views','./app/views');
-  
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended:true}));
+    app.set('view engine', 'ejs');
+    app.set('views', './app/views');
 
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use('/css',express.static('css'));
     var rotas = require('../app/routes/web');
     rotas(app);
 
 
-    app.listen(8000,function(){
+    app.listen(8000, function () {
         console.log("localhost:8000");
     });
 } 

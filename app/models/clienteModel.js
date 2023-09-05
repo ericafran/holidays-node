@@ -5,6 +5,7 @@ const express = require('express');
 
 const ExpressValidator = require('express-validator');
 
+
 module.exports = function () {
 
     this.find = async function (municipio, retorno) {
@@ -65,16 +66,16 @@ module.exports = function () {
             var queryCadastra = `insert into feriados (nome_feriado,data_feriado,chave_municipio) 
                  VALUES ('${nome}','${data}',${chave})`;
 
-            const registro = await findName(nome);
+            const registro = await findName(nome, chave);
 
             console.log(registro.length)
             if (registro.length == 0) {
                 db.openDb().then(db => {
                     db.exec(queryCadastra, retorno)
-
+                    
                 });
             } else {
-                ("Não posso cadastrar")
+                ("Não foi possível cadastrar. Cadastro já existe ");
 
             }
 
@@ -103,7 +104,7 @@ module.exports = function () {
             res = true
             return res;
         } else {
-            res=false;
+            res = false;
             console.log("caracteres identificados")
             return res;
         }
@@ -112,9 +113,9 @@ module.exports = function () {
 
 
 
-    this.findName = async function (nome, res) {
+    this.findName = async function (nome, chave_municipio, res) {
 
-        var queryFindName = `select * from feriados where nome_feriado = '${nome}'`;
+        var queryFindName = `select * from feriados where nome_feriado = '${nome}' and chave_municipio = '${chave_municipio}'`;
         console.log(queryFindName)
         try {
             return db.openDb().then(db => {

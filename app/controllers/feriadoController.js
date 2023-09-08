@@ -1,6 +1,5 @@
 var clienteModel = require('../models/clienteModel')();
-const express = require('express');
-const ExpressValidator = require('express-validator');
+
 
 
 module.exports.adicionar = function (req, res) {
@@ -11,7 +10,7 @@ module.exports.adicionar = function (req, res) {
 
         if (!erro) {
 
-            res.redirect('/');
+            res.redirect('/adicionar');
         } else {
             console.log("Erro ao adicionar ")
             res.redirect('/');
@@ -21,9 +20,17 @@ module.exports.adicionar = function (req, res) {
 
 module.exports.show = function (req, res) {
 
-    var municipio = req.query.municipio;
+    var municipio = req.body.teste;
+    
 
     clienteModel.find(municipio, function (erro, resultado) {
+        if (!erro) {
+
+            res.redirect('/show');
+        } else {
+            console.log("Erro ao adicionar ")
+            res.redirect('/');
+        }
 
     })
 

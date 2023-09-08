@@ -9,18 +9,15 @@ const ExpressValidator = require('express-validator');
 module.exports = function () {
 
     this.find = async function (municipio, retorno) {
-        var municipio = dados.municipio;
-
+      
         const registro = await findId(municipio);
-        var querySeleciona = `select * from feriados where id_municipio = '${registro}`;
+
 
         if (registro.length > 0) {
-            db.openDb().then(db => {
-                db.exec(querySeleciona, retorno)
-            });
+            console.log(registro);
 
         } else {
-            ("Erro ao realizar consulta")
+            (console.log("Erro ao realizar consulta"));
         }
 
     };
@@ -28,7 +25,7 @@ module.exports = function () {
 
     this.findId = async function (municipio, res) {
 
-        var queryFind = `select id_municipio from municipios where nome_municipio = '${municipio}`;
+        var queryFind = `select * from feriados where chave_municipio = '${municipio}'`;
 
         console.log(queryFind)
         try {
@@ -38,7 +35,7 @@ module.exports = function () {
             });
 
         } catch (e) {
-            ('Falha ao procurar Id')
+            ('Falha ao procurar')
         }
         return res;
 
@@ -49,6 +46,9 @@ module.exports = function () {
     this.save = async function (dados, retorno) {
         var nome = dados.nome_feriado;
         var chave = dados.chave_municipio;
+
+
+
 
         const regexNumber = /\d+/g;
         const regexEspecial = /[^a-zA-Z 0-9]+/g;
@@ -62,7 +62,7 @@ module.exports = function () {
 
         if (verificaSeNumero && verificaSeCaractereEspecial == true) {
             var data = dados.data_feriado;
-            var resultadoBuscaData = await this.findData(data,chave);
+            var resultadoBuscaData = await this.findData(data, chave);
             console.log(resultadoBuscaData.length);
 
             if (resultadoBuscaData.length == 0) {
@@ -89,7 +89,10 @@ module.exports = function () {
         } else {
             (console.log("Números ou caracteres inseridos"));
         }
+
     }
+
+
 
     this.validaCampoNumero = function (validaNumero, res) {
         if (validaNumero == null || validaNumero[0] == '') {

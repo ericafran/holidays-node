@@ -4,17 +4,22 @@ const express = require('express');
 //const ExpressValidator = require('express-validator');
 
 const ExpressValidator = require('express-validator');
+const { render } = require('ejs');
 
 
 module.exports = function () {
 
-    this.find = async function (municipio, retorno) {
-      
+    this.find = async function (municipio) {
+
         const registro = await findId(municipio);
 
 
         if (registro.length > 0) {
-            console.log(registro);
+
+            console.log(registro)
+
+            return registro;
+
 
         } else {
             (console.log("Erro ao realizar consulta"));
@@ -25,7 +30,7 @@ module.exports = function () {
 
     this.findId = async function (municipio, res) {
 
-        var queryFind = `select * from feriados where chave_municipio = '${municipio}'`;
+        var queryFind = `select nome_feriado, data_feriado from feriados where chave_municipio = '${municipio}'`;
 
         console.log(queryFind)
         try {

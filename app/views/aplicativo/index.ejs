@@ -22,105 +22,41 @@
     </nav>
   </div>
 </header>
-<h1>Cadastre aqui os feriados</h1>
 
 <body>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script>
-    $(function () {
-      //código para exibir os modais
-    });
-  </script>
+  <h1>Cadastre aqui os feriados</h1>
+
+  <form action="/adicionar" method="post">
+    <input type="text" required name="nome_feriado" placeholder="Nome do Feriado">
+    <input type="date" required name="data_feriado" placeholder="DataFeriado">
+    <input type="number" style="width: 100px;" min=1 max=2 required name="chave_municipio" placeholder="Chave">
+    <button>Cadastrar</button>
+  </form>
+
+  <br />
+  <br />
+  <br />
+
+
+  <h1>Verifique aqui os feriados</h1>
+  <form action="/show" method="post">
+    <select id="teste" name="teste">
+      <option>Selecione:</option>
+      <option value="1" selected="selected">Belo Horizonte</option>
+      <option value="2">Betim</option>
+    </select>
+    <button type="submit">Consultar Feriados</button>
+  </form>
+
+
+
+
+
+
+
+
+
+
 </body>
-<form action="/adicionar" method="post">
-  <input type="text" required name="nome_feriado" placeholder="Nome do Feriado">
-  <input type="date" required name="data_feriado" placeholder="DataFeriado">
-  <input type="number" style="width: 100px;" min=1 max=2 required name="chave_municipio" placeholder="Chave">
-  <button>Cadastrar</button>
-</form>
-
-<br />
-<br />
-<br />
-
-
-<h1>Verifique aqui os feriados</h1>
-<form action="/show" method="post">
-  <select id="teste" name="teste">
-    <option>Selecione:</option>
-    <option value="1" selected="selected">Belo Horizonte</option>
-    <option value="2">Betim</option>
-  </select>
-  <button  type="submit">Consultar
-    Feriados</button>
-</form>
-<!--class="btn btn-primary" data-toggle="modal" data-target="#modal-mensagem"-->
-<!-- <div class="modal fade" id="modal-mensagem">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-        <h4 class="modal-title">Variável</h4>
-      </div>
-      <div class="modal-body"> -->
-        <!-- <table id="example" class="table table-striped" style="width:100%">
-          <thead>
-            <tr>
-              <th>Nome_Feriado</th>
-              <th>Data_Feriado</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            <% for (var i=0;i<feriado.length; i++){%>
-
-              <tr>
-
-                <td>
-                  <%= feriado[i].nome_feriado%>
-                </td>
-                <td>
-                  <%= feriado[i].data_feriado%>
-                </td>
-
-              </tr>
-              <%}%>
-          </tbody>
-
-
-        </table> -->
-
-        <!-- <p>Teste</p>
-        <ul>
-          <%for(var i=0; i<feriado.length; i++){%>
-            <li>
-              Nome:<%= feriado[i].nome%>
-
-            </li>
-            <li>
-              Data: <%= feriado[i].data%>
-                <br>
-                <br>
-            </li>
-            <%}%>
-        </ul> -->
-
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-
-
-
-
-
-
-
-  </body>
 
 </html>

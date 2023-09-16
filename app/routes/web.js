@@ -31,7 +31,7 @@ module.exports = function (app) {
   app.post('/show', async function (req, result) {
     var feriado = await clienteModel.find(1);
     console.log(feriado);
-    result.render('aplicativo/show', { feriado: feriado });
+    result.render('aplicativo/show.ejs', { feriado: feriado });
   
 
 

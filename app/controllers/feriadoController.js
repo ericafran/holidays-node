@@ -24,15 +24,16 @@ module.exports.show = async function (req, result) {
 
 
     const chamada = await clienteModel.find(municipio);
-    result.redirect('/show');
-    return chamada;
+    if(chamada !=""){
+   return result.render('aplicativo/show.ejs', { chamada: chamada });
+        
+    }
+    return result.redirect('/show');
     
 
 
-    //} else {
-    //console.log("Erro ao exibir registros")
-    //result.redirect('/');
-    //}
+
+    
 
 };
 

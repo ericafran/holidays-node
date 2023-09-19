@@ -42,9 +42,11 @@
                         <%= chamada[i].data_feriado%>
                     </td>
                     <td><button type="button" class="btn btn-warning btn-sm edit"
-                            data-id="`+chamada.chamada[i]].id+`">Edit</button>&nbsp;<button type="button"
-                            class="btn btn-danger btn-sm delete" data-id="`+chamada.chamada[i].id+`">Delete</button>
+                            id="`+chamada.chamada[i]].id+`">Edit</button>&nbsp;<button type="button"
+                            class="btn btn-danger btn-sm delete" onclick="apagarCampo()" data-toggle="modal"
+                            data-target="#meuModal" id={$}data-id="`+chamada.chamada[i].id+`">Delete</button>
                     </td>
+
 
                 </tr>
                 <%}%>
@@ -52,6 +54,15 @@
 
 
     </table>
+    <script>
+        function apagarCampo() {
+            var resposta = confirm("deseja remover esse registro?");
+            if (resposta == true) {
+                window.location.href = ""
+            }
+        }    </script>
+
+
 </body>
 
 </html>

@@ -21,7 +21,9 @@ module.exports = function (app) {
 
 
   });
-
+app.post ('/acao',function(req,res,next){
+  
+})
 
 
 

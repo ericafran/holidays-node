@@ -25,6 +25,8 @@
             <tr>
                 <th>Nome_Feriado</th>
                 <th>Data_Feriado</th>
+                <th>Ação</th>
+
 
             </tr>
         </thead>
@@ -38,6 +40,10 @@
                     </td>
                     <td>
                         <%= chamada[i].data_feriado%>
+                    </td>
+                    <td><button type="button" class="btn btn-warning btn-sm edit"
+                            data-id="`+chamada.chamada[i]].id+`">Edit</button>&nbsp;<button type="button"
+                            class="btn btn-danger btn-sm delete" data-id="`+chamada.chamada[i].id+`">Delete</button>
                     </td>
 
                 </tr>

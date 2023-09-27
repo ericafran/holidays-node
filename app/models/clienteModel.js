@@ -30,7 +30,7 @@ module.exports = function () {
 
     this.findId = async function (municipio, res) {
 
-        var queryFind = `select nome_feriado, data_feriado from feriados where chave_municipio = '${municipio}'`;
+        var queryFind = `select id_feriados,nome_feriado, data_feriado from feriados where chave_municipio = '${municipio}'`;
 
         console.log(queryFind)
         try {
@@ -47,13 +47,19 @@ module.exports = function () {
 
     };
 
+    this.delete = async function (identificacao) {
+        var nome = identificacao.nome_feriado;
+        var queryDelete = `DELETE from feriados WHERE nome_feriado= '${nome}'`;
+        console.log(queryDelete)
+        db.openDb().then(db => {
+            db.exec(queryDelete, retorno)
 
+        });
+
+    }
     this.save = async function (dados, retorno) {
         var nome = dados.nome_feriado;
         var chave = dados.chave_municipio;
-
-
-
 
         const regexNumber = /\d+/g;
         const regexEspecial = /[^a-zA-Z 0-9]+/g;

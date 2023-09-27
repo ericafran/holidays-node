@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Exibindo Feriados</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            //código para exibir os modais
+        });
+    </script>
+
+
+    <!--<table id="example" class="table table-striped" style="width:100%">-->
+    <table class="table table-hover table-striped ">
+        <thead>
+            <tr>
+                <th class="col-xs-3">Id_Feriado</th>
+                <th class="col-xs-3">Nome_Feriado</th>
+                <th class="col-xs-3">Data_Feriado</th>
+                <th class="col-xs-6">Ação</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <% for (var i=0;i<chamada.length; i++){%>
+
+                <tr class="clicktableRow">
+                    <td class="col-xs-3" id="id_feriado">
+                        <%= chamada[i].id_feriados%>
+                    </td>
+
+                    <td class="col-xs-3" id="nome_do_feriado">
+                        <%= chamada[i].nome_feriado%>
+                    </td>
+                    <td class="col-xs-3" id="data_do_feriado">
+                        <%= chamada[i].data_feriado%>
+                    </td>
+                    <td>
+                        <button onclick="mostrarModalEditarFeriado()" type="button" class="btn-primary clicado"
+                            data-toggle="modal" data-target="#mostrar" id="<%=chamada[i].id_feriados%>">Editar</button>
+                    </td>
+
+
+
+                </tr>
+                <%}%>
+        </tbody>
+
+
+    </table>
+    <div class="modal fade" id="mostrar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Editar</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Editar esse registro?</p>
+                    <input type="text" id="id_feriado_name_modal" value='${nome}' /> </br></br>
+                    <input type="date" id="id_feriado_date_modal" value='${data}'>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmar">Confirmar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        function apagarCampo() {
+            var resposta = confirm("deseja remover esse registro?");
+            if (resposta == true) {
+                window.location.href = "/confirm.html"
+            }
+        }    </script>
+    <script>
+        function mostrarModalEditarFeriado() {
+            var nome = document.getElementById("nome_do_feriado");
+            var data = document.getElementById("data_do_feriado");
+            console.log(nome.value);
+            console.log(data.value);
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

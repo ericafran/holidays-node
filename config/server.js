@@ -1,5 +1,5 @@
 
-//const { ExpressValidator } = require('express-validator');
+
 const { criarTabelas } = require('../app/models/InicializadorTabelas');
 
 module.exports = function () {
@@ -15,7 +15,7 @@ module.exports = function () {
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use('/css',express.static('css'));
+    app.use('/css', express.static('css'));
     var rotas = require('../app/routes/web');
     rotas(app);
 

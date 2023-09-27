@@ -1,5 +1,10 @@
 var clienteModel = require('../models/clienteModel')();
 
+module.exports.apagar = function (req, res) {
+    var identificacao = req.body;
+    console.log(identificacao)
+    clienteModel.delete(identificacao);
+}
 
 
 module.exports.adicionar = function (req, res) {
@@ -24,16 +29,16 @@ module.exports.show = async function (req, result) {
 
 
     const chamada = await clienteModel.find(municipio);
-    if(chamada !=""){
-   return result.render('aplicativo/show.ejs', { chamada: chamada });
-        
+    if (chamada != "") {
+        return result.render('layouts/show.ejs', { chamada: chamada });
+
     }
     return result.redirect('/show');
-    
 
 
 
-    
+
+
 
 };
 

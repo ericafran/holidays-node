@@ -1,6 +1,9 @@
 
+//const { LIMIT_SQL_LENGTH } = require('sqlite3');
 var feriadoController = require('../controllers/feriadoController');
 const clienteModel = require('../models/clienteModel')();
+
+
 
 module.exports = function (app) {
 
@@ -8,7 +11,7 @@ module.exports = function (app) {
 
     //var feriado = [];
 
-    res.render('aplicativo/index');
+    res.render('layouts/index');
   })
 
   app.post('/adicionar', function (req, res) {
@@ -21,9 +24,7 @@ module.exports = function (app) {
 
 
   });
-app.post ('/acao',function(req,res,next){
-  
-})
+
 
 
 
